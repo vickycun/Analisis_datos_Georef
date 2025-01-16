@@ -1,4 +1,4 @@
-# Análisis de Datos Georeferenciales (AnalisisArchivosNNSA)
+# Análisis de Datos Georeferenciales (AnalisisArchivos)
 
 Este proyecto permite analizar archivos CSV con datos de tarjetas SUBE, detectando duplicados y patrones inconsistentes en las transacciones.
 
