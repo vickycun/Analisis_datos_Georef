@@ -1,6 +1,6 @@
 # Análisis de Datos Georeferenciales (AnalisisArchivos)
 
-Este proyecto permite analizar archivos CSV con datos de tarjetas SUBE, detectando duplicados y patrones inconsistentes en las transacciones.
+Este proyecto permite analizar archivos CSV de datos Georreferenciales, detectando duplicados y patrones inconsistentes en las transacciones.
 
 ## **Características**
 - Análisis de duplicados exactos y transacciones con diferencias menores o iguales a 3 segundos.
