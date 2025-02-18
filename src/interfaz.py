@@ -1,24 +1,33 @@
 import os
 from tkinter import Tk, Label, Button, Entry, filedialog, messagebox
 from tkinter.scrolledtext import ScrolledText
-from src.analisis import analizar_csv
+from src.analisis import analizar_archivos
 
-ruta_csv = ""  # Ruta del archivo CSV seleccionado
-ruta_informe = ""  # Ruta del informe generado
-informe = ""  # Contenido del informe
+# Variables globales para almacenar la lista de archivos seleccionados y el informe generado
+lista_rutas = []
+informe = ""
+ruta_informe = ""
 
-def seleccionar_archivo(entry):
-    global ruta_csv
-    ruta_csv = filedialog.askopenfilename(filetypes=[("Archivos CSV", "*.csv")])
-    if ruta_csv:
+def seleccionar_archivos(entry):
+    global lista_rutas
+    lista_rutas = filedialog.askopenfilenames(
+        filetypes=[
+            ("Todos los archivos", "*.*"),
+            ("Archivos soportados", "*.csv *.zip *.gz"),
+            ("Archivos CSV", "*.csv"),
+            ("Archivos ZIP", "*.zip"),
+            ("Archivos GZip", "*.gz")
+        ]
+    )
+    if lista_rutas:
         entry.delete(0, "end")
-        entry.insert(0, ruta_csv)
+        entry.insert(0, ", ".join(lista_rutas))
 
-def analizar_archivo(text_informe):
+def analizar_archivos_interfaz(text_informe):
     global informe
     informe = ""
     try:
-        informe = analizar_csv(ruta_csv)
+        informe = analizar_archivos(lista_rutas)
         text_informe.delete("1.0", "end")
         text_informe.insert("1.0", informe)
         messagebox.showinfo("Éxito", "Análisis finalizado.")
@@ -29,15 +38,12 @@ def descargar_informe():
     global ruta_informe
     if informe:
         try:
-            # Obtener el directorio del archivo CSV original
-            carpeta = os.path.dirname(ruta_csv)
-            nombre_original = os.path.splitext(os.path.basename(ruta_csv))[0]
-            # Crear la ruta del informe
+            # Se guarda en la carpeta del primer archivo seleccionado
+            carpeta = os.path.dirname(lista_rutas[0])
+            nombre_original = "informe_multiples archivos"
             ruta_informe = os.path.join(carpeta, f"analisis_{nombre_original}.txt")
-            # Guardar el informe
             with open(ruta_informe, "w", encoding="utf-8") as f:
                 f.write(informe)
-
             messagebox.showinfo("Éxito", f"Informe guardado correctamente en:\n{ruta_informe}")
         except Exception as e:
             ruta_informe = ""
@@ -58,19 +64,21 @@ def abrir_directorio():
 
 def iniciar_interfaz():
     root = Tk()
-    root.title("Análisis de archivo 'Georeferenciales' Nación Servicios")
+    root.title("Análisis de archivos 'Georeferenciales' Nación Servicios")
     root.geometry("600x500")
 
-    icono_ruta = os.path.join("assets", "icono.ico")
+    icono_ruta = os.path.join(os.path.dirname(__file__), "../assets/icono.ico")
     if os.path.exists(icono_ruta):
         root.iconbitmap(icono_ruta)
+    else:
+        print(f"Advertencia: No se encontró el archivo del ícono en la ruta {icono_ruta}")
 
-    Label(root, text="Seleccionar archivo CSV:").pack(pady=5)
+    Label(root, text="Seleccionar archivos CSV/ZIP/GZ:").pack(pady=5)
     entry_archivo = Entry(root, width=50)
     entry_archivo.pack(pady=5)
-    Button(root, text="Seleccionar", command=lambda: seleccionar_archivo(entry_archivo)).pack(pady=5)
+    Button(root, text="Seleccionar", command=lambda: seleccionar_archivos(entry_archivo)).pack(pady=5)
 
-    Button(root, text="Analizar Archivo", command=lambda: analizar_archivo(text_informe)).pack(pady=10)
+    Button(root, text="Analizar Archivos", command=lambda: analizar_archivos_interfaz(text_informe)).pack(pady=10)
 
     Label(root, text="Informe de análisis:").pack(pady=5)
     text_informe = ScrolledText(root, wrap="word", height=12)
