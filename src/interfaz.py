@@ -2,6 +2,7 @@ import os
 from tkinter import Tk, Label, Button, Entry, filedialog, messagebox
 from tkinter.scrolledtext import ScrolledText
 from src.analisis import analizar_archivos
+from datetime import datetime
 
 # Variables globales para almacenar la lista de archivos seleccionados y el informe generado
 lista_rutas = []
@@ -38,10 +39,11 @@ def descargar_informe():
     global ruta_informe
     if informe:
         try:
+            fecha_hora_actual = datetime.now().strftime("%Y%m%d_%H%M")  # Formato: YYYYMMDD_HHMM
             # Se guarda en la carpeta del primer archivo seleccionado
             carpeta = os.path.dirname(lista_rutas[0])
-            nombre_original = "informe_multiples archivos"
-            ruta_informe = os.path.join(carpeta, f"analisis_{nombre_original}.txt")
+            nombre_original =  f"Analisis_Georef_{fecha_hora_actual}.txt" 
+            ruta_informe = os.path.join(carpeta, nombre_original)
             with open(ruta_informe, "w", encoding="utf-8") as f:
                 f.write(informe)
             messagebox.showinfo("Éxito", f"Informe guardado correctamente en:\n{ruta_informe}")
