@@ -3,7 +3,7 @@
 Este proyecto permite analizar archivos CSV de datos Georreferenciales (sueltos, o contenidos dentro de ZIP o Gz), detectando duplicados y patrones inconsistentes en las transacciones.
 
 ## **Características**
-- Análisis de duplicados exactos y transacciones con diferencias menores o iguales a 3 segundos.
+- Análisis de duplicados y transacciones con diferencias menores o iguales a 3 segundos.
 - Informe detallado de los resultados directamente en la interfaz gráfica.
 - Descarga del informe en formato .txt.
 
