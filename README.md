@@ -8,6 +8,7 @@ Este proyecto permite analizar archivos CSV de datos Georreferenciales, detectan
 - Descarga del informe en formato .txt.
 
 ## **Estructura del Proyecto**
+```
 analisisDatosNNSS/
 ├── main.py                # Archivo principal que ejecuta el programa
 ├── src/
@@ -16,7 +17,7 @@ analisisDatosNNSS/
 ├── assets/
 │   └── icono.ico          # Ícono del programa
 └── README.md              # Documentación del proyecto
-
+```
 
 ##  **Cómo Iniciar la Aplicación**
 ### **Requisitos Previos**
