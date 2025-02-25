@@ -43,7 +43,6 @@ def process_dataframe(df, nombre_archivo):
         # Verificar si hay diferencias en las columnas adicionales
         grupos_duplicados = duplicados_exactos.groupby(columnas_clave)
         for grupo, registros in grupos_duplicados:
-            # Verificar si hay diferencias en las columnas adicionales
             if registros[columnas_adicionales].duplicated().all():
                 # No hay diferencias, mostrar solo un registro
                 informe.append("Registro duplicado:")

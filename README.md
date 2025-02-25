@@ -24,7 +24,7 @@ analisisDatosNNSS/
     - **Python 3.8 o superior**
 
     - Ejecutar desde el Código Fuente
-        Clonar el repositorio: git clone https://github.com/tuusuario/analisisDatosGeoreferencialesCSV.git
+        Clonar el repositorio: git clone https://github.com/vickycun/Analisis_datos_Georef.git
 
     - Activar el entorno virtual:
         source env/bin/activate   # En Linux/Mac
@@ -34,18 +34,26 @@ analisisDatosNNSS/
 
 
 ## **Cómo usar el programa**
-1. Seleccionar un archivo CSV
-2. Analizar los datos
-3. Descargar el informe
+1. Seleccionar archivo/s CSV/ZIP/GZ
+2. Presionar el botón "Analizar los datos"
+3. En la ventana central, aparecerá un reporte del procesamiento de los archivos
+3. Si se presiona el botón "Descargar Informe", se descarga un txt, al mismo directorio donde están los archivos analizados.
 
 
 ## **Generar el ejecutable**
 Para crear un ejecutable con PyInstaller, usar el siguiente comando desde la raíz del proyecto:
 
-`pyinstaller --onefile --name "AnalisisArchivosNNSA" --icon="assets/icono.ico" --add-data "assets/icono.ico;assets" --noconsole main.py`
+`pyinstaller --onefile --name "Nombre_Del_Programa" --icon="assets/icono.ico" --add-data "assets/icono.ico;assets" --noconsole main.py` 
 
 El ejecutable se generará en la carpeta dist.
 
+## Capturas de Pantalla
+![Ejemplo de un archivo csv insumo del análisis](assets/screenshots/ejemplo_archivo_csv_a_analizar.png)
+![Captura de pantalla principal del programa](assets/screenshots/pantalla_principal01.png)
+![Captura de pantalla selección de archivos](assets/screenshots/pantalla_principal02_seleccion_archivos.png)
+![Captura de pantalla análisis finalizado](assets/screenshots/pantalla_principal03.png)
+![Captura de pantalla descarga de informe](assets/screenshots/pantalla_principal04.png)
+
 
 ## **Licencia**  
-Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles
+Este proyecto se encuentra bajo la Licencia MIT. Consultá el archivo [LICENSE](LICENSE) para más detalles
